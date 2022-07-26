@@ -12,6 +12,13 @@ body {
     grid-template-columns: repeat(16, auto); /*needs to be transferred to JS*/
 }
 
+#menu {
+    width: 100px;
+    height: 700px;
+    margin: 25px;
+}
+
 .black {
     background-color: black;
 }
+
