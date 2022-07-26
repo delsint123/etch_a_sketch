@@ -11,3 +11,7 @@ body {
     margin: 0px;
     grid-template-columns: repeat(16, auto); /*needs to be transferred to JS*/
 }
+
+.black {
+    background-color: black;
+}
