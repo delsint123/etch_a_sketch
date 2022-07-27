@@ -9,7 +9,6 @@ body {
     width: 800px;
     height: 800px;
     margin: 0px;
-    /*grid-template-columns: repeat(16, auto); needs to be transferred to JS*/
 }
 
 #menu {
@@ -22,3 +21,10 @@ body {
     background-color: black;
 }
 
+.color {
+    background-color: yellow;       /*temp color*/
+}
+
+.opacity {
+    background-color: gray;       /*temp color*/
+}
