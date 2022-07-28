@@ -116,7 +116,6 @@ function makeBrush() {
 
 function setToBlack() {
     if (!colorBlack) {
-        reset();            //may remove
         opacity = false;
         color = false;
         colorBlack = true;
@@ -125,7 +124,6 @@ function setToBlack() {
 
 function setToOpacity() {
     if (!opacity) {
-        reset();            //may remove
         color = false;
         colorBlack = false;
         opacity = true;
@@ -134,7 +132,6 @@ function setToOpacity() {
 
 function setToColor() {
     if (!color) {
-        reset();            //may remove
         opacity = false;
         colorBlack = false;
         color = true;
@@ -148,7 +145,7 @@ function assignColor(pixel) {
     }
     else if(opacity) {
         pixel.classList.remove('black', 'color');
-        pixel.classList.add('opacity');                 //add responsiveness
+        getOpacityColor(pixel);                 //add responsiveness
     }
     else if(color) {
         pixel.classList.remove('opacity', 'black');
@@ -167,4 +164,24 @@ function generateNumber() {
     //random number between 0 & 255
     let num = Math.floor(Math.random()* (255 + 1));
     return num;        
+}
+
+//increase in opacity for each pass
+function getOpacityColor(pixel) {
+    let opacity = pixel.style.opacity;
+
+    if(opacity == "") {
+        opacity = parseFloat('0.0');
+    }
+
+    //convert to float (if needed) to complete calculations
+    opacity = parseFloat(opacity);
+
+    if(opacity > 1.0) {
+        pixel.style.cssText = 'opacity: 1.0; background-color: black';
+    }
+    else {
+        opacity += 0.2;
+        pixel.style.cssText = `opacity: ${opacity}; background-color: black`;
+    }
 }
