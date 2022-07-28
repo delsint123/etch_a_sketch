@@ -1,3 +1,10 @@
+/*
+Project: Etch-A-Sketch
+Org/Course: The Odin Project
+Date Started: July 21, 2022
+Recent Update:
+*/
+
 const menu = document.querySelector('#menu');
 
 const blackButton = document.createElement('button');
@@ -24,46 +31,9 @@ opacityButton.onclick = setToOpacity;
 
 colorButton.onclick = setToColor;
 
-function setToBlack() {
-    if (!colorBlack) {
-        reset();            //may remove
-        opacity = false;
-        color = false;
-        colorBlack = true;
-    }
-    console.log(opacity, color, colorBlack);
-}
-
-function setToOpacity() {
-    if (!opacity) {
-        reset();            //may remove
-        color = false;
-        colorBlack = false;
-        opacity = true;
-    }
-    console.log(opacity, color, colorBlack);
-}
-
-function setToColor() {
-    if (!colorBlack) {
-        reset();            //may remove
-        opacity = false;
-        colorBlack = false;
-        color = true;
-    }
-    console.log(opacity, color, colorBlack);
-}
-
 const slider = document.createElement('input');
-slider.setAttribute('type', 'range');
-slider.setAttribute('min', '4');
-slider.setAttribute('max', '100');
-slider.setAttribute('value', '16');
-slider.classList.add('slider');
-slider.setAttribute('id', 'range');
+setSliderAttributes();
 menu.appendChild(slider);
-
-const canvas = document.querySelector('#canvas');
 
 const sliderValue = document.createElement('div');
 menu.appendChild(sliderValue);
@@ -72,12 +42,7 @@ let singleDimension = slider.value;
 let dimensions = slider.value*slider.value;
 generateGrid();
 
-slider.oninput = () => {
-    sliderValue.innerHTML = slider.value + ' x ' + slider.value;
-    singleDimension = slider.value;
-    dimensions = slider.value*slider.value;
-    updateGrid();
-}
+slider.oninput = updateSlider;
 
 const resetButton = document.createElement('button');
 resetButton.setAttribute('id','reset');
@@ -86,9 +51,28 @@ menu.appendChild(resetButton);
 
 resetButton.onclick = reset;
 
+//function definitions
+
+function setSliderAttributes() {
+    slider.setAttribute('type', 'range');
+    slider.setAttribute('min', '4');
+    slider.setAttribute('max', '100');
+    slider.setAttribute('value', '16');
+    slider.classList.add('slider');
+    slider.setAttribute('id', 'range');
+}
+
+function updateSlider() {
+    sliderValue.innerHTML = slider.value + ' x ' + slider.value;
+    singleDimension = slider.value;
+    dimensions = slider.value*slider.value;
+    updateGrid();
+}
+
 function reset() {
     document.querySelectorAll('.pixel').forEach(pixel => {
-        pixel.classList.remove('black', 'color', 'opacity');
+        pixel.classList.remove('black', 'opacity');
+        pixel.removeAttribute('style');
     })
 }
 
@@ -98,8 +82,9 @@ function removeGrid() {
     })
 }
 
-
 function generateGrid() {
+    const canvas = document.querySelector('#canvas');
+
     for(let i = 0; i < dimensions; i++) { //256 will change to variable
         const squares = document.createElement('div');
         squares.classList.add('pixel');
@@ -129,6 +114,33 @@ function makeBrush() {
     });
 }
 
+function setToBlack() {
+    if (!colorBlack) {
+        reset();            //may remove
+        opacity = false;
+        color = false;
+        colorBlack = true;
+    }
+}
+
+function setToOpacity() {
+    if (!opacity) {
+        reset();            //may remove
+        color = false;
+        colorBlack = false;
+        opacity = true;
+    }
+}
+
+function setToColor() {
+    if (!color) {
+        reset();            //may remove
+        opacity = false;
+        colorBlack = false;
+        color = true;
+    }
+}
+
 function assignColor(pixel) {
     if(colorBlack) {
         pixel.classList.remove('opacity', 'color');
@@ -136,10 +148,23 @@ function assignColor(pixel) {
     }
     else if(opacity) {
         pixel.classList.remove('black', 'color');
-        pixel.classList.add('opacity');
+        pixel.classList.add('opacity');                 //add responsiveness
     }
     else if(color) {
         pixel.classList.remove('opacity', 'black');
-        pixel.classList.add('color');
+        getRandomColors(pixel);                   
     };
+}
+
+//generate random colors using numbers
+function getRandomColors(pixel) {
+    let randomRGB = `rgb(${generateNumber()}, ${generateNumber()}, ${generateNumber()})`;
+    
+    pixel.style.backgroundColor = randomRGB;
+}
+
+function generateNumber() {
+    //random number between 0 & 255
+    let num = Math.floor(Math.random()* (255 + 1));
+    return num;        
 }
