@@ -43,6 +43,7 @@ menu.appendChild(slider);
 const sliderValue = document.createElement('div');
 sliderValue.classList.add('sliderValue');
 menu.appendChild(sliderValue);
+
 sliderValue.innerHTML = slider.value + ' x ' + slider.value;
 let singleDimension = slider.value;                 //value used to set number of columns in grid
 let dimensions = slider.value*slider.value;
@@ -94,13 +95,17 @@ function generateGrid() {
     for(let i = 0; i < dimensions; i++) { 
         const squares = document.createElement('div');
         squares.classList.add('pixel');
-        squares.setAttribute('id', i);
+
+        //each pixel having a unique id to target
+        squares.setAttribute('id', i);  
+
         canvas.appendChild(squares);
     }
     canvas.style.gridTemplateColumns = `repeat(${singleDimension}, auto)`;
     makeBrush();
 }
 
+//group functions for readability
 function updateGrid() {
     reset();
     removeGrid();
@@ -108,17 +113,22 @@ function updateGrid() {
     makeBrush();
 }
 
+//creates event listener to enable colors to display
 function makeBrush() {
     const pixels = document.querySelectorAll('.pixel');
 
     pixels.forEach(pixel => {
         pixel.addEventListener('mouseover', (e) => {
+            //obtaining the id of specific pixel
             const pixel = document.getElementById(e.composedPath()[0].id);
+
             assignColor(pixel);
         })
     });
 }
 
+//functions used to toggle through different modes 
+//ensures that only one color mode is active
 function setToBlack() {
     if (!colorBlack) {
         opacity = color = false;
@@ -139,6 +149,7 @@ function setToColor() {
         color = true;
     }
 }
+//end toggle functions
 
 function assignColor(pixel) {
     if(colorBlack) {

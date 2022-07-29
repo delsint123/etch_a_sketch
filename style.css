@@ -46,6 +46,7 @@ p {
 }
 
 .black {
+    opacity: 1;
     background-color: black;
 }
 
