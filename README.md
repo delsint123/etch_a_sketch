@@ -10,7 +10,7 @@ Recent Update: July 28, 2022
 
 Using the utilization of HTML, CSS, and JS I created a etch-a-sketch like program. Complete with buttons that can toggle between different color modes. The default being black. Black opacity is a mode that increase in opacity for each pass using black. Lastly, the color mode generates random RGB colors.
 
-A loop wsa used to generate the grid, while event listeners were used to change the color of a specific pixel. Functions were frequently used to organize and improve the readability of the JS file.
+A loop was used to generate the grid, while event listeners were used to change the color of a specific pixel. Functions were frequently used to organize and improve the readability of the JS file.
 
 There is also a slider than can change the dimensions of the canvas/etch-a-sketch area. The reset button clears this area.
 
