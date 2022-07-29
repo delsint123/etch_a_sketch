@@ -78,7 +78,6 @@ function updateSlider() {
 
 function reset() {
     document.querySelectorAll('.pixel').forEach(pixel => {
-        pixel.classList.remove('black', 'opacity');
         pixel.removeAttribute('style');
     })
 }
@@ -154,7 +153,9 @@ function setToColor() {
 function assignColor(pixel) {
     if(colorBlack) {
         pixel.classList.remove('opacity', 'color');
-        pixel.classList.add('black');
+
+        //color assigned using inline CSS to override opacity black mode if needed
+        pixel.style.cssText = 'opacity: 1.0; background-color: black'
     }
     else if(opacity) {
         pixel.classList.remove('black', 'color');
