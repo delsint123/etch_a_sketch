@@ -1,4 +1,33 @@
+/*~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+Project: Etch-A-Sketch
+Org/Course: The Odin Project
+Related files: index.html, javascript.js, README.md
+Date Started: July 21, 2022
+Recent Update: July 28, 2022
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~*/
+
 body {
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+    height: 100%;
+    background-color: lightblue;
+}
+
+#title {
+    text-align: center;
+    width: 100%;
+    margin: 20px;
+}
+
+h1 {
+    font-size: 30pt;
+}
+
+p {
+    font-size: 16pt;
+    margin: 10px;
+}
+
+#container {
     display: flex;
     justify-content: center;
     align-items: center;
@@ -9,18 +38,95 @@ body {
     width: 800px;
     height: 800px;
     margin: 0px;
-}
-
-#menu {
-    width: 100px;
-    height: 700px;
-    margin: 25px;
+    border: 15px;
+    border-style: double;
+    border-radius: 10px;
+    border-color:black;
+    background-color: white;
 }
 
 .black {
     background-color: black;
 }
 
-/*.opacity {
-    background-color: gray;       /*temp color
-}*/
+#menu {
+    width: 150px;
+    height: 500px;
+    padding: 25px;
+    margin: 25px;
+    text-align: center;
+    background-color: paleturquoise;
+    border: 3px;
+    border-style: solid;
+    border-radius: 10px;
+    border-color: black;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: center;
+}
+
+h3 {
+    font-size: 24pt;
+    margin: 0px;
+}
+
+h6 {
+    width: 100%;
+    font-size: 12pt;
+    margin: 24px 12px 12px 12px;
+}
+
+button {
+    font-size: 10pt;
+    font-weight: bold;
+    color: grey;
+    width: 100%;
+    padding: 5px;
+    border: none;
+    border-radius: 8px;
+}
+
+button:hover {
+    background-color: lightgoldenrodyellow;
+    color: black;
+}
+
+.slider {
+    -webkit-appearance: none;
+    width: 80%;
+    height: 10px;
+    border-radius: 10px;
+    background: lightpink;
+    outline: none;
+    opacity: 0.7;
+    -webkit-transition: .2s;
+    transition: opacity .2s;
+}
+
+.slider::-webkit-slider-thumb {
+    -webkit-appearance: none;
+    appearance: none;
+    width: 20px;
+    height: 20px;
+    border-radius: 50%;
+    background: #315fa5;
+    cursor: pointer;
+}
+
+.slider::-moz-range-thumb {
+    width: 20px;
+    height: 20px;
+    border-radius: 50%;
+    background: #315fa5;
+    cursor: pointer;
+}
+
+.slider:hover {
+    opacity: 1;
+}
+
+.sliderValue {
+    margin: 0px;
+}
+

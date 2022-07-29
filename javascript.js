@@ -1,9 +1,10 @@
-/*
+/*~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 Project: Etch-A-Sketch
 Org/Course: The Odin Project
+Related files: index.html, style.css, README.md
 Date Started: July 21, 2022
-Recent Update:
-*/
+Recent Update: July 28, 2022
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~*/
 
 const menu = document.querySelector('#menu');
 
@@ -31,14 +32,19 @@ opacityButton.onclick = setToOpacity;
 
 colorButton.onclick = setToColor;
 
+const dimensionsTXT = document.createElement('h6');
+dimensionsTXT.textContent = 'Dimensions';
+menu.appendChild(dimensionsTXT);
+
 const slider = document.createElement('input');
 setSliderAttributes();
 menu.appendChild(slider);
 
 const sliderValue = document.createElement('div');
+sliderValue.classList.add('sliderValue');
 menu.appendChild(sliderValue);
 sliderValue.innerHTML = slider.value + ' x ' + slider.value;
-let singleDimension = slider.value;
+let singleDimension = slider.value;                 //value used to set number of columns in grid
 let dimensions = slider.value*slider.value;
 generateGrid();
 
@@ -85,7 +91,7 @@ function removeGrid() {
 function generateGrid() {
     const canvas = document.querySelector('#canvas');
 
-    for(let i = 0; i < dimensions; i++) { //256 will change to variable
+    for(let i = 0; i < dimensions; i++) { 
         const squares = document.createElement('div');
         squares.classList.add('pixel');
         squares.setAttribute('id', i);
@@ -104,7 +110,6 @@ function updateGrid() {
 
 function makeBrush() {
     const pixels = document.querySelectorAll('.pixel');
-    console.log(pixels); 
 
     pixels.forEach(pixel => {
         pixel.addEventListener('mouseover', (e) => {
@@ -116,24 +121,21 @@ function makeBrush() {
 
 function setToBlack() {
     if (!colorBlack) {
-        opacity = false;
-        color = false;
+        opacity = color = false;
         colorBlack = true;
     }
 }
 
 function setToOpacity() {
     if (!opacity) {
-        color = false;
-        colorBlack = false;
+        color = colorBlack = false;
         opacity = true;
     }
 }
 
 function setToColor() {
     if (!color) {
-        opacity = false;
-        colorBlack = false;
+        opacity = colorBlack = false;
         color = true;
     }
 }
@@ -145,7 +147,7 @@ function assignColor(pixel) {
     }
     else if(opacity) {
         pixel.classList.remove('black', 'color');
-        getOpacityColor(pixel);                 //add responsiveness
+        getOpacityColor(pixel);              
     }
     else if(color) {
         pixel.classList.remove('opacity', 'black');
@@ -171,6 +173,7 @@ function getOpacityColor(pixel) {
     let opacity = pixel.style.opacity;
 
     if(opacity == "") {
+        //set to 0 instead of a blank string
         opacity = parseFloat('0.0');
     }
 
