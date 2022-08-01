@@ -1,0 +1,56 @@
+etch-a-sketch
+
+canvas container
+	create a webpage with a 16x16 grid of square DIVS using JS
+			create and append the divs inside a loop
+				display: grid to create grid
+				https://www.w3schools.com/css/css_grid_container.asp
+		place in container in HTML
+			canvas: should be centered vertically and horizontally
+				justify-content and align-items
+
+	set hover effect so that the grid divs change color when your mouse passes over them
+		using event listeners
+				https://developer.mozilla.org/en-US/docs/Web/API/Element/mouseover_event
+			~addEventListener('mouseover' , (event) => {})
+
+menu container
+	houses options of colors
+		for all: 
+			linked to ~addEventListener
+			set as boolean function
+				when clicked set to true
+					set rest to false
+		default: black
+			function 
+				when mouseover turn hover square to black
+					using a black class 
+		ec: change to random rgb color
+			function 
+			https://code.tutsplus.com/tutorials/how-to-code-a-random-color-generator-in-javascript--cms-39861
+				when mouseover turn hover square to random color
+					create random RGB color function
+						Math.floor(Math.random()) to get a random number
+							max num is always 255  (0-255)
+								get 3 different numbers return in parenthesis
+		ec: increase in opacity for each pass using black
+			function
+				if color opacity = 0 increase by 20% black
+				else if color opacity > 20 increase by 10% black
+
+	reset button
+		clears canvas containter	
+			remove any classes on divs in canvas container
+				revert back to default div
+					//use .onclick to set run function
+	use a slider bar
+			https://www.w3schools.com/howto/howto_js_rangeslider.asp
+		new grid should be generated
+		automatically clear canvas
+		limit to max of 100px
+		limit to min of 4px
+			https://bobbyhadz.com/blog/javascript-set-multiple-attributes-to-element
+			
+			
+			
+*****FIX SCOPE ISSUES*********
